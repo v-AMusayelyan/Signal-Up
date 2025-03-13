@@ -6,14 +6,101 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		7A038CA82D7ED14900D2A102 /* Signal_Up_WidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A038CA52D7ED14900D2A102 /* Signal_Up_WidgetBundle.swift */; };
+		7A5B499B2D6F58610062A9F5 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A03EFC72D6DED95006DB7EE /* WidgetKit.framework */; };
+		7A5B499C2D6F58610062A9F5 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A03EFC92D6DED95006DB7EE /* SwiftUI.framework */; };
+		7A5B49AD2D6F58620062A9F5 /* Signal Up WidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7A5B499A2D6F58610062A9F5 /* Signal Up WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7A5B49AB2D6F58620062A9F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7A03EF6C2D6DD6F0006DB7EE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7A5B49992D6F58610062A9F5;
+			remoteInfo = "Signal Up WidgetExtension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7A03EFE02D6DED97006DB7EE /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				7A5B49AD2D6F58620062A9F5 /* Signal Up WidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		7A038CA52D7ED14900D2A102 /* Signal_Up_WidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signal_Up_WidgetBundle.swift; sourceTree = "<group>"; };
 		7A03EF742D6DD6F0006DB7EE /* Signal Up.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Signal Up.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A03EFC72D6DED95006DB7EE /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		7A03EFC92D6DED95006DB7EE /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		7A5B499A2D6F58610062A9F5 /* Signal Up WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Signal Up WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		7A038D402D7F044600D2A102 /* Exceptions for "Signal Up Widget" folder in "Signal Up WidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 7A5B49992D6F58610062A9F5 /* Signal Up WidgetExtension */;
+		};
+		7A5B49B52D6F5AC50062A9F5 /* Exceptions for "Signal Up" folder in "Signal Up WidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Code/Home/Models/FloatingBottomSheetModel/FloatingBottomSheetAlertConfig.swift,
+				Code/Home/Models/FloatingBottomSheetModel/FloatingBottomSheetComponentConfig.swift,
+				Code/Home/Models/FloatingBottomSheetModel/FloatingBottomSheetTokenDetailsConfig.swift,
+				Code/Home/Models/SignalModel/SignalModel.swift,
+				Code/Home/ViewModels/HomeViewModel.swift,
+				"Code/Home/Views/Blur Card View/BlurCardView.swift",
+				"Code/Home/Views/Bottom Sheet/FloatingBottomSheets.swift",
+				"Code/Home/Views/Bottom Sheet/Helper/FloatingSheetsHelper.swift",
+				"Code/Home/Views/Bottom Sheet/SheetView.swift",
+				"Code/Home/Views/Home View/HomeView.swift",
+				Model/AppState.swift,
+				Resources/Assets.xcassets,
+				SupportingFiles/ContentView/ContentView.swift,
+				"Widget Helper /ViewModels/SignalUpLiveActivityViewModel.swift",
+				"Widget Helper /Views/LiveActivityView.swift",
+				"Widget Helper /WidgetURLService/WidgetURLService.swift",
+			);
+			target = 7A5B49992D6F58610062A9F5 /* Signal Up WidgetExtension */;
+		};
+		7A94D0312D6F5F6E00577CFF /* Exceptions for "Signal Up Widget" folder in "Signal Up" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				TokenDetailsConfigTokenDetailsConfig/SignalUpWidgetAppAttributes.swift,
+				ViewModels/SignalUpWidgetViewModel.swift,
+			);
+			target = 7A03EF732D6DD6F0006DB7EE /* Signal Up */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		7A03EF762D6DD6F0006DB7EE /* Signal Up */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				7A5B49B52D6F5AC50062A9F5 /* Exceptions for "Signal Up" folder in "Signal Up WidgetExtension" target */,
+			);
 			path = "Signal Up";
+			sourceTree = "<group>";
+		};
+		7A5B499D2D6F58610062A9F5 /* Signal Up Widget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				7A94D0312D6F5F6E00577CFF /* Exceptions for "Signal Up Widget" folder in "Signal Up" target */,
+				7A038D402D7F044600D2A102 /* Exceptions for "Signal Up Widget" folder in "Signal Up WidgetExtension" target */,
+			);
+			path = "Signal Up Widget";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -26,6 +113,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7A5B49972D6F58610062A9F5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A5B499C2D6F58610062A9F5 /* SwiftUI.framework in Frameworks */,
+				7A5B499B2D6F58610062A9F5 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -33,6 +129,9 @@
 			isa = PBXGroup;
 			children = (
 				7A03EF762D6DD6F0006DB7EE /* Signal Up */,
+				7A5B499D2D6F58610062A9F5 /* Signal Up Widget */,
+				7A038CA52D7ED14900D2A102 /* Signal_Up_WidgetBundle.swift */,
+				7A03EFC62D6DED95006DB7EE /* Frameworks */,
 				7A03EF752D6DD6F0006DB7EE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,8 +140,18 @@
 			isa = PBXGroup;
 			children = (
 				7A03EF742D6DD6F0006DB7EE /* Signal Up.app */,
+				7A5B499A2D6F58610062A9F5 /* Signal Up WidgetExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		7A03EFC62D6DED95006DB7EE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7A03EFC72D6DED95006DB7EE /* WidgetKit.framework */,
+				7A03EFC92D6DED95006DB7EE /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -55,10 +164,12 @@
 				7A03EF702D6DD6F0006DB7EE /* Sources */,
 				7A03EF712D6DD6F0006DB7EE /* Frameworks */,
 				7A03EF722D6DD6F0006DB7EE /* Resources */,
+				7A03EFE02D6DED97006DB7EE /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				7A5B49AC2D6F58620062A9F5 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				7A03EF762D6DD6F0006DB7EE /* Signal Up */,
@@ -69,6 +180,28 @@
 			productName = "Signal Up";
 			productReference = 7A03EF742D6DD6F0006DB7EE /* Signal Up.app */;
 			productType = "com.apple.product-type.application";
+		};
+		7A5B49992D6F58610062A9F5 /* Signal Up WidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7A5B49AF2D6F58620062A9F5 /* Build configuration list for PBXNativeTarget "Signal Up WidgetExtension" */;
+			buildPhases = (
+				7A5B49962D6F58610062A9F5 /* Sources */,
+				7A5B49972D6F58610062A9F5 /* Frameworks */,
+				7A5B49982D6F58610062A9F5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				7A5B499D2D6F58610062A9F5 /* Signal Up Widget */,
+			);
+			name = "Signal Up WidgetExtension";
+			packageProductDependencies = (
+			);
+			productName = "Signal Up WidgetExtension";
+			productReference = 7A5B499A2D6F58610062A9F5 /* Signal Up WidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -81,6 +214,9 @@
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					7A03EF732D6DD6F0006DB7EE = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					7A5B49992D6F58610062A9F5 = {
 						CreatedOnToolsVersion = 16.2;
 					};
 				};
@@ -100,12 +236,20 @@
 			projectRoot = "";
 			targets = (
 				7A03EF732D6DD6F0006DB7EE /* Signal Up */,
+				7A5B49992D6F58610062A9F5 /* Signal Up WidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		7A03EF722D6DD6F0006DB7EE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7A5B49982D6F58610062A9F5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +266,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7A5B49962D6F58610062A9F5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A038CA82D7ED14900D2A102 /* Signal_Up_WidgetBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7A5B49AC2D6F58620062A9F5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7A5B49992D6F58610062A9F5 /* Signal Up WidgetExtension */;
+			targetProxy = 7A5B49AB2D6F58620062A9F5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		7A03EF802D6DD6F2006DB7EE /* Debug */ = {
@@ -179,8 +339,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
@@ -236,8 +394,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
@@ -249,17 +405,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Signal Up/Signal Up.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Signal Up/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Signal Up/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = WS26NXG635;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -278,17 +437,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Signal Up/Signal Up.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Signal Up/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Signal Up/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = WS26NXG635;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -296,6 +458,66 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "musayelyan.test.Signal-Up";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		7A5B49B02D6F58620062A9F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WS26NXG635;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Signal Up Widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Signal Up Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "musayelyan.test.Signal-Up.Signal-Up-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7A5B49B12D6F58620062A9F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WS26NXG635;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Signal Up Widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Signal Up Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "musayelyan.test.Signal-Up.Signal-Up-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -319,6 +541,15 @@
 			buildConfigurations = (
 				7A03EF832D6DD6F2006DB7EE /* Debug */,
 				7A03EF842D6DD6F2006DB7EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7A5B49AF2D6F58620062A9F5 /* Build configuration list for PBXNativeTarget "Signal Up WidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7A5B49B02D6F58620062A9F5 /* Debug */,
+				7A5B49B12D6F58620062A9F5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
