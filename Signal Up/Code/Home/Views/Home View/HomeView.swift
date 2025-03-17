@@ -10,75 +10,73 @@ import ActivityKit
 import UserNotifications
 
 struct HomeView: View {
-
     @EnvironmentObject var appState: AppState
     @StateObject var viewModel: HomeViewModel
     @Environment(\.scenePhase) private var scenePhase
-
-    @State var blurView1: UIVisualEffectView = .init()
-    @State var blurView2: UIVisualEffectView = .init()
-    @State var defaultBlurRadius: CGFloat = 0
-    @State var defaultSaturationAmount: CGFloat = 0
-
+    
+    @State private var blurView1 = UIVisualEffectView()
+    @State private var blurView2 = UIVisualEffectView()
+    @State private var defaultBlurRadius: CGFloat = 0
+    @State private var defaultSaturationAmount: CGFloat = 0
+    
     init(appState: AppState) {
         _viewModel = StateObject(wrappedValue: HomeViewModel(appState: appState))
     }
-
+    
     var body: some View {
         NavigationView {
             ZStack {
-                Color("BG")
-                    .ignoresSafeArea()
-
-                // Add circles in the background as before
-                CircleView(gradientColors: [.color1, .color2], size: 300, offset: CGSize(width: -40, height: 400))
-                CircleView(gradientColors: [.color3, .color4], size: 160, offset: CGSize(width: -150, height: 60))
-                CircleView(gradientColors: [.color5, .color6], size: 200, offset: CGSize(width: 150, height: 100))
-                CircleView(gradientColors: [.color7, .color8], size: 300, offset: CGSize(width: 100, height: -300))
-                CircleView(gradientColors: [.color9, .color10], size: 80, offset: CGSize(width: 50, height: -90))
-
-                VStack {
-                    GlassMorphicCard(blurView: $blurView1)
-                        .frame(height: 200, alignment: .center)
-
-                    ActiveSignalListView()
-                        .padding()
-                        .background {
-                            GlassMorphicCard(blurView: $blurView2)
-                        }
-                        .frame(height: 346, alignment: .center)
-                    Spacer()
-                }
+                Color("BG").ignoresSafeArea()
+                backgroundCircles()
+                contentView()
             }
             .padding()
-            .onChange(of: viewModel.activities.isEmpty) { _ in
-                blurView1.gaussianBlurRadius = (!viewModel.activities.isEmpty ? 2 : defaultBlurRadius)
-                blurView1.saturationAmount = (!viewModel.activities.isEmpty ? 2 : defaultSaturationAmount)
-
-                blurView2.gaussianBlurRadius = (!viewModel.activities.isEmpty ? 2 : defaultBlurRadius)
-                blurView2.saturationAmount = (!viewModel.activities.isEmpty ? 2 : defaultSaturationAmount)
-            }
-            .onChange(of: appState.id) { _ in
-                viewModel.toggleAlert()
-            }
-            .onChange(of: appState.isSignalUp) { _ in
-                viewModel.toggleAlert()
-            }
-            .onChange(of: scenePhase) { newPhase in
-                if newPhase == .active {
-                    viewModel.startTimer()
-                } else if newPhase == .background {
-                    viewModel.stopTimer()
-                }
-            }
+            .onChange(of: viewModel.activities.isEmpty) { _ in updateBlurEffect() }
+            .onChange(of: appState.id) { _ in viewModel.toggleAlert() }
+            .onChange(of: appState.isSignalUp) { _ in viewModel.toggleAlert() }
+            .onChange(of: scenePhase) { handleScenePhase($0) }
             .navigationTitle("Signal Up App")
         }
-        .floatingBottomSheet(isPresented: $viewModel.showAlertDown) {
-            SignalSheetView(isUp: false)
+        .floatingBottomSheet(isPresented: $viewModel.showAlertDown) { SignalSheetView(isUp: false) }
+        .floatingBottomSheet(isPresented: $viewModel.showAlertUp) { SignalSheetView(isUp: true) }
+    }
+    
+    @ViewBuilder
+    private func contentView() -> some View {
+        VStack() {
+            GlassMorphicCard(blurView: $blurView1)
+                .frame(height: 200, alignment: .center)
+            
+            ActiveSignalListView()
+                .frame(height: 346, alignment: .center)
+                .background {
+                    GlassMorphicCard(blurView: $blurView2)
+                }
+            Spacer()
         }
-        .floatingBottomSheet(isPresented: $viewModel.showAlertUp) {
-            SignalSheetView(isUp: true)
-        }
+    }
+    
+    @ViewBuilder
+    private func backgroundCircles() -> some View {
+        CircleView(gradientColors: [.color1, .color2], size: 300, offset: CGSize(width: -40, height: 400))
+        CircleView(gradientColors: [.color3, .color4], size: 160, offset: CGSize(width: -150, height: 60))
+        CircleView(gradientColors: [.color5, .color6], size: 200, offset: CGSize(width: 150, height: 100))
+        CircleView(gradientColors: [.color7, .color8], size: 300, offset: CGSize(width: 100, height: -300))
+        CircleView(gradientColors: [.color9, .color10], size: 80, offset: CGSize(width: 50, height: -90))
+    }
+    
+    private func updateBlurEffect() {
+        let blurRadius = viewModel.activities.isEmpty ? defaultBlurRadius : 10
+        let saturation = viewModel.activities.isEmpty ? defaultSaturationAmount : 8
+        blurView1.gaussianBlurRadius = blurRadius
+        blurView1.saturationAmount = saturation
+        blurView2.gaussianBlurRadius = blurRadius
+        blurView2.saturationAmount = saturation
+    }
+    
+    private func handleScenePhase(_ newPhase: ScenePhase) {
+        if newPhase == .active { viewModel.startTimer() }
+        else if newPhase == .background { viewModel.stopTimer() }
     }
 
     @ViewBuilder
@@ -103,24 +101,17 @@ struct HomeView: View {
 
                             .overlay(content: {
                                 RoundedRectangle(cornerRadius: 25, style: .continuous)
-                                    .stroke(
-                                        .linearGradient(colors: [
-                                            .white,
-                                            .clear,
-                                            .purple.opacity(0.5),
-                                            .purple
-                                        ], startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 2
-                                    )
+                                    .stroke(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.purple]), startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 2)
                             })
-
+                        
                     } else {
                         ForEach(viewModel.activities, id: \.id) { activity in
                             SignalActivityRow(activity)
                                 .transition(.slide)
                         }
-                        .animation(.spring(response: 0.4, dampingFraction: 0.6), value: UUID())
                     }
                 }
+                .animation(.spring(response: 0.6, dampingFraction: 0.6), value: UUID())
             }
         }
     }
@@ -138,7 +129,6 @@ struct HomeView: View {
                     .frame(width: 16, height: 16)
                     .foregroundColor(.black)
             }
-            .frame(maxWidth: .infinity)
             .padding(10)
             .background(activity.attributes.isSignalUp ? Color.customGreen.gradient : Color.customRed.gradient)
             .foregroundColor(.black)
@@ -170,7 +160,7 @@ struct HomeView: View {
                 foreground: .black),
             tokenDetailsConfig: FloatingBottomSheetTokenDetailsConfig(
                 isSignUp: isUp,
-                tokenName: "Token",
+                tokenName: "Token Price",
                 tokenNameText: signal.name,
                 tokenIcon: "solana-logo",
                 currentPrice: "\(signal.price)",
@@ -184,7 +174,6 @@ struct HomeView: View {
     @ViewBuilder
     func GlassMorphicCard(blurView: Binding<UIVisualEffectView>) -> some View {
         ZStack {
-            // Custom Blur View
             CustomBlurView(effect: .systemUltraThinMaterial) { view in
                 blurView.wrappedValue = view
                 if defaultBlurRadius == 0 { defaultBlurRadius = view.gaussianBlurRadius }
@@ -192,25 +181,12 @@ struct HomeView: View {
             }
             .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
 
-            // Overlay Shapes
             RoundedRectangle(cornerRadius: 25, style: .continuous)
-                .fill(
-                    .linearGradient(colors: [
-                        .white.opacity(0.25),
-                        .white.opacity(0.25)
-                    ], startPoint: .topLeading, endPoint: .bottomTrailing)
-                )
+                .fill(.linearGradient(colors: [.white.opacity(0.25), .white.opacity(0.25)], startPoint: .topLeading, endPoint: .bottomTrailing))
                 .blur(radius: 5)
 
             RoundedRectangle(cornerRadius: 25, style: .continuous)
-                .stroke(
-                    .linearGradient(colors: [
-                        .white.opacity(0.6),
-                        .clear,
-                        .purple.opacity(0.2),
-                        .purple.opacity(0.5)
-                    ], startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 2
-                )
+                .stroke(.linearGradient(colors: [.white.opacity(0.6), .clear, .purple.opacity(0.2), .purple.opacity(0.5)], startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 2)
         }
         .shadow(color: .black.opacity(0.15), radius: 5, x: -10, y: 10)
         .shadow(color: .black.opacity(0.15), radius: 5, x: 10, y: -10)

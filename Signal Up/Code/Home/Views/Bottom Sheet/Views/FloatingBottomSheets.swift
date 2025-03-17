@@ -54,7 +54,7 @@ struct FloatingBottomSheets: View {
                     ),
                     tokenDetailsConfig: FloatingBottomSheetTokenDetailsConfig(
                         isSignUp: alertType == .up,
-                        tokenName: "Token",
+                        tokenName: "Token Price",
                         tokenNameText: appState.name,
                         tokenIcon: "solana-logo",
                         currentPrice: "\(appState.price)",

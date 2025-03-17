@@ -197,7 +197,7 @@ extension UIVisualEffectView {
 
     // Apply New Effects
     func applyNewEffects() {
-        UIVisualEffectView.animate(withDuration: 1) {
+        UIVisualEffectView.animate(withDuration: 2) {
             self.backDrop?.perform(Selector(("applyRequestedFilterEffects")))
         }
     }
