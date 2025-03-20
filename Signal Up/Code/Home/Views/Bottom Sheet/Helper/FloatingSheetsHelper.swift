@@ -27,7 +27,7 @@ fileprivate struct SheetShadowRemover: UIViewRepresentable {
     func makeUIView(context: Context) -> UIView {
         let view = UIView(frame: .zero)
         view.backgroundColor = .clear
-
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             if let uiSheetView = view.viewBeforeWindow {
                 for view in uiSheetView.subviews {
@@ -37,7 +37,7 @@ fileprivate struct SheetShadowRemover: UIViewRepresentable {
         }
         return view
     }
-
+    
     func updateUIView(_ uiView: UIView, context: Context) {}
 }
 

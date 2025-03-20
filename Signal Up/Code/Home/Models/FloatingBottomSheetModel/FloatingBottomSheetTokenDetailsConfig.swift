@@ -11,7 +11,7 @@ import SwiftUI
 struct FloatingBottomSheetTokenDetailsConfig {
     var isSignUp: Bool
     var tokenName: String
-    var tokenNameText: String
+    var tokenNamePlaceholder: String
     var tokenIcon: String
     var currentPrice: String
     var finalPrice: String

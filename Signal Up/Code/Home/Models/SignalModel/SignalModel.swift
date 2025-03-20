@@ -19,7 +19,7 @@ class SignalModel {
         let randomBool = Bool.random()
         let percentage = (Double.random(in: 1...10) * 100).rounded() / 100
         let price = (Double.random(in: 130...150) * 100).rounded() / 100
-
+        
         return Signal(name: "Solana", price: price, percentage: percentage, isSignalUp: randomBool)
     }
 }

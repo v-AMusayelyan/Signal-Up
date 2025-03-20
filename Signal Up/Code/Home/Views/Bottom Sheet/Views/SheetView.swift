@@ -105,7 +105,7 @@ struct SheetView: View {
                 .font(.system(size: 18, weight: .semibold))
                 .foregroundColor(.black)
             Spacer()
-            Text(tokenDetailsConfig.tokenNameText)
+            Text(tokenDetailsConfig.tokenNamePlaceholder)
                 .font(.system(size: 18, weight: .semibold))
                 .foregroundColor(.black)
             Image(tokenDetailsConfig.tokenIcon)

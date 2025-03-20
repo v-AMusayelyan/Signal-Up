@@ -10,7 +10,7 @@ import SwiftUI
 // MARK: - Floating Bottom Sheets
 struct FloatingBottomSheets: View {
     @State private var showAlert: AlertType?
-
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -36,7 +36,7 @@ struct FloatingBottomSheets: View {
         )) {
             if let alertType = showAlert {
                 let appState = alertType.appState
-
+                
                 SheetView(
                     alertConfig: FloatingBottomSheetAlertConfig(
                         title: alertType == .up ? "Signal Up" : "Signal Down",
@@ -55,7 +55,7 @@ struct FloatingBottomSheets: View {
                     tokenDetailsConfig: FloatingBottomSheetTokenDetailsConfig(
                         isSignUp: alertType == .up,
                         tokenName: "Token Price",
-                        tokenNameText: appState.name,
+                        tokenNamePlaceholder: appState.name,
                         tokenIcon: "solana-logo",
                         currentPrice: "\(appState.price)",
                         finalPrice: String(format: "%.2f", (appState.price + (appState.isSignalUp ? 1 : -1) * (appState.price * appState.percentage / 100))),
@@ -71,12 +71,12 @@ struct FloatingBottomSheets: View {
 // MARK: - Alert Type
 private enum AlertType {
     case up, down
-
+    
     var appState: AppState {
         let isUp = self == .up
         let percentage: Double = 10
         let price: Double = 100
-
+        
         return AppState(
             signalState: isUp ? .upState : .downState,
             price: price,
@@ -92,7 +92,7 @@ struct FloatingBottomSheetsCustomButton: View {
     var title: String
     var backgroundColor: Color
     var action: () -> Void
-
+    
     var body: some View {
         Button(action: action) {
             Text(title)

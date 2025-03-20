@@ -14,7 +14,7 @@ class AppState: ObservableObject {
     @Published var percentage: Double
     @Published var name: String
     @Published var isSignalUp: Bool
-
+    
     init(signalState: SignalState, price: Double, percentage: Double, name: String, isSignalUp: Bool) {
         self.signalState = signalState
         self.price = price

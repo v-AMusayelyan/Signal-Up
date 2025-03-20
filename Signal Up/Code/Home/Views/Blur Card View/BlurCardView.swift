@@ -12,26 +12,26 @@ struct BlurCardView: View {
     @State var blurView: UIVisualEffectView = .init()
     @State var defaultBlurRadius: CGFloat = 0
     @State var defaultSaturationAmount: CGFloat = 0
-
+    
     @State var activateGlassMorphism: Bool = false
-
+    
     // MARK: - Body
     var body: some View {
         ZStack {
             // Background
             Color("BG")
                 .ignoresSafeArea()
-
+            
             // Circles
             CircleView(gradientColors: [.color1, .color2], size: 300, offset: CGSize(width: -40, height: 400))
             CircleView(gradientColors: [.color3, .color4], size: 160, offset: CGSize(width: -150, height: 60))
             CircleView(gradientColors: [.color5, .color6], size: 200, offset: CGSize(width: 150, height: 100))
             CircleView(gradientColors: [.color7, .color8], size: 300, offset: CGSize(width: 100, height: -300))
             CircleView(gradientColors: [.color9, .color10], size: 80, offset: CGSize(width: 50, height: -90))
-
+            
             // Glass Morphic Card
             GlassMorphicCard()
-
+            
             // Toggle for Glass Morphism Activation
             Toggle("Activate Glass Morpism", isOn: $activateGlassMorphism)
                 .font(.title3)
@@ -44,19 +44,19 @@ struct BlurCardView: View {
                 .padding(15)
         }
     }
-
+    
     // MARK: - Glass Morphic Card
     @ViewBuilder
     func GlassMorphicCard() -> some View  {
         ZStack {
             // Custom Blur View
-        CustomBlurView(effect: .systemUltraThinMaterial) { view in
+            CustomBlurView(effect: .systemUltraThinMaterial) { view in
                 blurView = view
                 if defaultBlurRadius == 0 { defaultBlurRadius = view.gaussianBlurRadius }
                 if defaultSaturationAmount == 0 { defaultSaturationAmount = view.saturationAmount}
             }
             .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
-
+            
             // Overlay Shapes
             RoundedRectangle(cornerRadius: 25, style: .continuous)
                 .fill(
@@ -66,7 +66,7 @@ struct BlurCardView: View {
                     ], startPoint: .topLeading, endPoint: .bottomTrailing)
                 )
                 .blur(radius: 5)
-
+            
             RoundedRectangle(cornerRadius: 25, style: .continuous)
                 .stroke(
                     .linearGradient(colors: [
@@ -88,7 +88,7 @@ struct BlurCardView: View {
         .padding(.horizontal, 25)
         .frame(height: 220)
     }
-
+    
     // MARK: - Card Content
     @ViewBuilder
     func CardContent() -> some View {
@@ -97,18 +97,18 @@ struct BlurCardView: View {
             HStack {
                 Text("MEMBERSHIP")
                     .modifier(CustomModifier(font: .callout))
-
+                
                 Image(systemName: "swiftdata")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 40, height: 40)
             }
             Spacer()
-
+            
             // User Information
             Text("AREN MUSAYELYAN")
                 .modifier(CustomModifier(font: .title3))
-
+            
             Text("DIPLOMA WORK")
                 .modifier(CustomModifier(font: .callout))
         }
@@ -136,12 +136,12 @@ struct CustomModifier: ViewModifier {
 struct CustomBlurView: UIViewRepresentable {
     var effect: UIBlurEffect.Style
     var onChange: (UIVisualEffectView) -> ()
-
+    
     func makeUIView(context: Context) -> UIVisualEffectView {
         let view = UIVisualEffectView(effect: UIBlurEffect(style: effect))
         return view
     }
-
+    
     func updateUIView(_ uiView: UIVisualEffectView, context: Context) {
         DispatchQueue.main.async {
             onChange(uiView)
@@ -154,7 +154,7 @@ struct CircleView: View {
     let gradientColors: [Color]
     let size: CGFloat
     let offset: CGSize
-
+    
     var body: some View {
         Circle()
             .fill(LinearGradient(
@@ -173,17 +173,17 @@ extension UIVisualEffectView {
     var backDrop: UIView? {
         return subView(forClass: NSClassFromString("_UIVisualEffectBackdropView"))
     }
-
+    
     // Gaussian Blur Property
     var gaussianBlur: NSObject? {
         return backDrop?.value(key: "filters", filter: "gaussianBlur")
     }
-
+    
     // Saturation Property
     var saturation: NSObject? {
         return backDrop?.value(key: "filters", filter: "colorSaturate")
     }
-
+    
     // Gaussian Blur Radius Property
     var gaussianBlurRadius: CGFloat {
         get {
@@ -194,14 +194,14 @@ extension UIVisualEffectView {
             applyNewEffects()
         }
     }
-
+    
     // Apply New Effects
     func applyNewEffects() {
         UIVisualEffectView.animate(withDuration: 2) {
             self.backDrop?.perform(Selector(("applyRequestedFilterEffects")))
         }
     }
-
+    
     // Saturation Amount Property
     var saturationAmount: CGFloat {
         get {
@@ -235,7 +235,7 @@ extension NSObject {
             return setValue(newValue, forKeyPath: "requestedValues")
         }
     }
-
+    
     // Get Value by Key and Filter
     func value(key: String, filter: String) -> NSObject? {
         (value(forKey: key) as? [NSObject])?.first(where: { obj in

@@ -74,18 +74,18 @@ func expandedCenterView(viewModel: SignalUpWidgetViewModel) -> some View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 20, height: 20)
-
+            
             Text(viewModel.context.attributes.name)
                 .font(.system(size: 12, weight: .semibold))
                 .foregroundColor(.white)
         }
         .padding(.horizontal)
-
+        
         HStack(spacing: 0) {
             Text(viewModel.formattedPrice())
                 .font(.system(size: 26, weight: .semibold))
                 .foregroundColor(.white)
-
+            
             Text(viewModel.formattedPercentage())
                 .font(.system(size: 10, weight: .semibold))
                 .padding(4)
@@ -102,7 +102,7 @@ func compactLeadingView(viewModel: SignalUpWidgetViewModel) -> some View {
             .resizable()
             .aspectRatio(contentMode: .fit)
             .frame(width: 24, height: 24)
-
+        
         Text(viewModel.formattedPercentage())
             .font(.system(size: 12, weight: .semibold))
             .foregroundColor(viewModel.signalColor())
@@ -122,7 +122,7 @@ func expandedTrailingView() -> some View {
         Text("Open App")
             .font(.system(size: 12, weight: .semibold))
             .foregroundColor(.white)
-
+        
         Image(systemName: "chevron.right")
             .resizable()
             .aspectRatio(contentMode: .fit)

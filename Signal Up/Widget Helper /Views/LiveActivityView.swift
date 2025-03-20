@@ -11,11 +11,11 @@ import WidgetKit
 
 struct SignalUpLiveActivityView: View {
     @StateObject private var viewModel: SignalUpLiveActivityViewModel
-
+    
     init(context: WidgetAttributes = SignalUpLiveActivityViewModel.defaultContext()) {
         _viewModel = StateObject(wrappedValue: SignalUpLiveActivityViewModel(context: context))
     }
-
+    
     var body: some View {
         VStack {
             HStack {
@@ -32,7 +32,7 @@ struct SignalUpLiveActivityView: View {
         .padding()
         .background(.black)
     }
-
+    
     // MARK: - Header Views
     private func leadingHeaderView() -> some View {
         HStack(spacing: 6) {
@@ -41,20 +41,20 @@ struct SignalUpLiveActivityView: View {
                 .scaledToFit()
                 .frame(width: 14, height: 14)
                 .foregroundColor(.white)
-
+            
             Text("Signal Up")
                 .font(.system(size: 12, weight: .semibold))
                 .foregroundColor(.white)
         }
         .padding(.horizontal, 10)
     }
-
+    
     private func trailingHeaderView() -> some View {
         HStack(spacing: 6) {
             Text("Open App")
                 .font(.system(size: 12, weight: .semibold))
                 .foregroundColor(.white)
-
+            
             Image(systemName: "chevron.right")
                 .resizable()
                 .scaledToFit()
@@ -63,7 +63,7 @@ struct SignalUpLiveActivityView: View {
         }
         .padding(.horizontal, 10)
     }
-
+    
     // MARK: - Center Content View
     private func centerContentView() -> some View {
         VStack(spacing: 0) {
@@ -72,17 +72,17 @@ struct SignalUpLiveActivityView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 20, height: 20)
-
+                
                 Text(viewModel.context.name)
                     .font(.system(size: 14, weight: .semibold))
                     .foregroundColor(.white)
             }
-
+            
             HStack(spacing: 4) {
                 Text("$\(String(viewModel.context.price))")
                     .font(.system(size: 28, weight: .bold))
                     .foregroundColor(.white)
-
+                
                 Text(" \(viewModel.context.isSignalUp ? "+" : "-") \(String(viewModel.context.percentage))%")
                     .font(.system(size: 12, weight: .bold))
                     .padding(6)
@@ -92,16 +92,16 @@ struct SignalUpLiveActivityView: View {
             }
         }
     }
-
+    
     // MARK: - Action Buttons
     private func buyButton() -> some View {
         actionButton(title: "Signal Up", color: .customGreen, isSignalUp: viewModel.context.isSignalUp)
     }
-
+    
     private func sellButton() -> some View {
         actionButton(title: "Signal Down", color: .customRed, isSignalUp: !viewModel.context.isSignalUp)
     }
-
+    
     private func actionButton(title: String, color: Color, isSignalUp: Bool) -> some View {
         if let generatedURL = viewModel.generateURL() {
             return AnyView(
